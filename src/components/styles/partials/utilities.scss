@@ -3,10 +3,24 @@
     margin-left: 30px;
 }
 
+.m-10x5 {
+    margin: 5px 10px;
+}
+
 // Paddings
+.p-20 {
+    padding: 20px;
+}
+
+
 .p-20x10 {
     padding: 10px 20px;
 }
+
+.py-10 {
+    padding: 10px 0;
+}
+
 
 .py-50 {
     padding: 50px 0;
@@ -23,6 +37,17 @@
     max-width: 100%;
 }
 
+.square {
+    width: 100px;
+    aspect-ratio: 1 / 1;
+}
+
+//LAYOUT
+.col-16 {
+    width: calc(100% / 6);
+}
+
+
 // Display
 .d-flex {
     display: flex;
@@ -32,7 +57,23 @@
     align-items: center;
 }
 
+
+.flex-justify-center {
+    justify-content: center;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+
+
 // Borders
 .rounded-20 {
     border-radius: 20px;
+}
+
+
+.rounded-t-20 {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
 }
