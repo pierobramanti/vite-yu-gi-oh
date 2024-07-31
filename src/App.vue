@@ -2,14 +2,14 @@
 import axios from 'axios';
 import { store } from './store';
 
-import Header from './components/Header.vue';
-import Main from './components/Main.vue';
+import Header from '../src/components/Header.vue';
+import Main from '../src/components/Main.vue';
 
 
 export default {
   components: {
     Header,
-    Main
+    Main,
   },
   data() {
     return {
@@ -34,6 +34,6 @@ export default {
   <Main />
 </template>
 
-<style scoped>
+<style>
   @import "./components/styles/generals.scss"
 </style>
