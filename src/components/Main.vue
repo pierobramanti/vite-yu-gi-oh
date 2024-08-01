@@ -30,7 +30,7 @@ export default {
 @use "../components/styles/partials/vars.scss" as *;
 
 main {
-    height: 500px;
+    height: 100%;
     background-color: $background_color;
     .card-container {
         background-color: white;
