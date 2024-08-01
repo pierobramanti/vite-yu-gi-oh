@@ -21,7 +21,7 @@ export default {
   },
   methods: {
     getCards(){
-      axios.get(store.url).then((res) => {
+      axios.get(`${store.url}${store.apiCards}`).then((res) => {
         store.cardList = res.data.data
       })
     }

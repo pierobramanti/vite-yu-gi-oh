@@ -93,3 +93,18 @@
 .text-center {
     text-align: center;
 }
+
+.select-style {
+    margin: 20px 30px;
+    display: block;
+    width: 200px;
+    padding: 5px;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    cursor: pointer;
+}

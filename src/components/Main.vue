@@ -1,6 +1,7 @@
 <script>
-import Cards from '../components/partials/Cards.vue';
+import Cards from './partials/Cards.vue';
 import { store } from '../store';
+import axios from 'axios';
 export default {
     components: {
         Cards
@@ -9,13 +10,35 @@ export default {
         return {
             store
         }
+    },
+    created() {
+        this.getArchetype()
+    },
+    methods: {
+        getArchetype(){
+            axios.get(`${store.url}${store.apiArch}`).then((res) => {
+                console.log(res)
+                for(let i=0; i<10; i++){
+                    store.archetypeList.push(res.data[i])
+                    console.log(res.data[i])
+                }
+            })
+        }
     }
 }
-
 
 </script>
 <template>
     <main class="py-50">
+        <div class="d-flex flex-justify-center">
+            <select class="select-style" name="arch" id="arch" v-model="store.archetypeCard">
+                <option value="">Select archetype</option>
+                <option value="Infernoble Arms">Infernoble Arms</option>
+                <option value="Noble Knight">Noble Knight</option>
+                <option value="Melodious">Melodious</option>
+                <option value="Archfiend">Archfiend</option>
+            </select>
+        </div>
         <div class="card-container mx-auto rounded-20">
             <div class="bg-dark rounded-t-20">
                 <p class="ms-30 py-20">Found {{ store.cardList.length }} cards</p>
