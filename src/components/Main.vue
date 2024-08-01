@@ -22,6 +22,7 @@ export default {
                     store.archetypeList.push(res.data[i])
                     console.log(res.data[i])
                 }
+                console.log(store.archetypeList)
             })
         }
     }
@@ -32,11 +33,7 @@ export default {
     <main class="py-50">
         <div class="d-flex flex-justify-center">
             <select class="select-style" name="arch" id="arch" v-model="store.archetypeCard">
-                <option value="">Select archetype</option>
-                <option value="Infernoble Arms">Infernoble Arms</option>
-                <option value="Noble Knight">Noble Knight</option>
-                <option value="Melodious">Melodious</option>
-                <option value="Archfiend">Archfiend</option>
+                <option v-for="arch, i in store.archetypeList" :key="`ar-${i}`" :value="arch.archetype_name">{{arch.archetype_name}}</option>
             </select>
         </div>
         <div class="card-container mx-auto rounded-20">
