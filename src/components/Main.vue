@@ -1,7 +1,7 @@
 <script>
 import Cards from './partials/Cards.vue';
 import { store } from '../store';
-import axios from 'axios';
+
 export default {
     components: {
         Cards
@@ -9,30 +9,22 @@ export default {
     data() {
         return {
             store
-        }
-    },
-    created() {
-        this.getArchetype()
+        };
     },
     methods: {
-        getArchetype(){
-            axios.get(`${store.url}${store.apiArch}`).then((res) => {
-                console.log(res)
-                for(let i=0; i<10; i++){
-                    store.archetypeList.push(res.data[i])
-                    console.log(res.data[i])
-                }
-                console.log(store.archetypeList)
-            })
+        sendArchetype() {
+            this.$emit('filter');
         }
     }
 }
-
 </script>
+
 <template>
     <main class="py-50">
         <div class="d-flex flex-justify-center">
-            <select class="select-style" name="arch" id="arch" v-model="store.archetypeCard">
+            <!-- Select -->
+            <select class="select-style" name="arch" id="arch" v-model="store.archetypeCard" @change="sendArchetype()">
+                <option value="">Select archetype</option>
                 <option v-for="arch, i in store.archetypeList" :key="`ar-${i}`" :value="arch.archetype_name">{{arch.archetype_name}}</option>
             </select>
         </div>
@@ -41,7 +33,7 @@ export default {
                 <p class="ms-30 py-20">Found {{ store.cardList.length }} cards</p>
             </div>
             <div class="d-flex flex-wrap flex-justify-center p-20">
-                <Cards />
+                <Cards :cardsArr="store.cardList" />
             </div>
         </div>
     </main>
@@ -50,7 +42,7 @@ export default {
 @use "../components/styles/partials/vars.scss" as *;
 
 main {
-    height: 100%;
+    
     background-color: $background_color;
     .card-container {
         background-color: white;
