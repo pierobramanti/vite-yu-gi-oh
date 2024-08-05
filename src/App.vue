@@ -14,37 +14,40 @@ export default {
     }
   },
   created() {
-    this.getCards()
+    this.getCards(),
+    this.getArchetype()
   },
-  computed: {
-    getArchetype() {
-      axios.get(`${store.url}${store.apiArch}`).then((res) => {
-        //console.log(res)
-        for (let i = 0; i < 10; i++) {
-          store.archetypeList.push(res.data[i])
-          console.log(res.data[i])
-        }
-        console.log(store.archetypeList)
-      })
-    }
-  },
+
   methods: {
     getCards() {
-      let url = `${store.url}`
-      if (store.archetypeCard != "") {
-        url += `?archetype_name=${store.archetypeList}`
+      let url = `${store.url}${store.apiCards}`
+      if (store.archetypeCard !== "") {
+        url += `&archetype=${store.archetypeCard}`
       }
-      axios.get(`${store.url}${store.apiCards}`).then((res) => {
+      axios.get(url).then((res) => {
         store.cardList = res.data.data
       })
     },
+    getArchetype() {
+      axios.get(`${store.url}${store.apiArch}`).then((res) => {
+        //console.log(res)
+        store.archetypeList = res.data
+        // for (let i = 0; i < 10; i++) {
+        //   store.archetypeList.push(res.data[i])
+        //   console.log(res.data[i])
+        // }
+        console.log(store.archetypeList)
+      })
+    }
   }
 }
 </script>
+
 <template>
   <Header />
-  <Main @filter="getArchetype" />
+  <Main @filter="getCards" />
 </template>
+
 <style>
 @import "./components/styles/generals.scss"
 </style>
